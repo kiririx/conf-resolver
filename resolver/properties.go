@@ -12,7 +12,7 @@ func ResolveProperties(file *os.File) (map[string]string, error) {
 		return nil, err
 	}
 	var buf [128]byte
-	var content []byte
+	conf := make(map[string]string)
 	for {
 		n, err := file.Read(buf[:])
 		if err == io.EOF {
@@ -22,18 +22,11 @@ func ResolveProperties(file *os.File) (map[string]string, error) {
 		if err != nil {
 			return nil, err
 		}
-		content = append(content, buf[:n]...)
-	}
-	props := string(content)
-	propArr := strings.Split(props, "\n")
-	conf := make(map[string]string)
-	for _, prop := range propArr {
-		prop = strings.TrimSpace(prop)
-		if len(prop) > 2 && !strings.HasPrefix(prop, "#") {
-			key := prop[:strings.Index(prop, "=")]
-			val := prop[strings.Index(prop, "=")+1:]
-			conf[key] = val
-		}
+		lineContent := string(buf[:n])
+		prop := strings.TrimSpace(lineContent)
+		key := prop[:strings.Index(prop, "=")]
+		val := prop[strings.Index(prop, "=")+1:]
+		conf[key] = val
 	}
 	return conf, nil
 }

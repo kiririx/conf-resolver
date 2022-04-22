@@ -5,8 +5,8 @@ Parse configuration files through Go
 
 |file type|supported
 |----|----|
-|ini|No
+|ini|Yes
 |xml|No
 |json|No
 |yml|No
-|properties|No
+|properties|Yes

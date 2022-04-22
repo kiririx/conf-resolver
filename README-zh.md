@@ -5,8 +5,8 @@
 
 | 文件类型       |是否支持
 |------------|----|
-| ini        |否
+| ini        |是
 | xml        |否
 | json       |否
 | yml        |否
-| properties |否
+| properties |是
