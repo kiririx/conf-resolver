@@ -45,7 +45,3 @@ func ResolveIni(file *os.File) (format.Ini, error) {
 	iniFile := format.Ini{Sections: sections}
 	return iniFile, nil
 }
-
-func filterStr(str *string) {
-	strings.TrimSpace(*str)
-}

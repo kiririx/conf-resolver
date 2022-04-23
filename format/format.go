@@ -19,3 +19,24 @@ type Ini struct {
 func (i *Ini) Get(section string, key string) string {
 	return i.Sections[section].Get(key)
 }
+
+type XML struct {
+	Nodes []*XMLNode
+}
+
+type XMLNode struct {
+	Children []*XMLNode
+}
+
+type XMLLeaf struct {
+	Key string
+	Val string
+}
+
+func (x *XML) GetNode() []*XMLNode {
+	return x.Nodes
+}
+
+func (x *XMLLeaf) Get(key string) string {
+	return x.Val
+}
